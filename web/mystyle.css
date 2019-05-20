@@ -1,0 +1,326 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans); /* Add a gray background color and some padding to the footer */
+footer {
+    background-color: #f2f2f2;
+    padding: 25px;
+}
+
+.carousel-inner img {
+    width: 100%; /* Set width to 100% */
+    min-height: 200px;
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: lightslategrey;
+    z-index: 9999;
+    border: 0;
+    font-family: Mont serrat, sans-serif;
+    font-size: 12px !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: white !important;
+}
+
+/*Color of hover boton*/
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: black !important;
+    background-color: darkgrey !important;
+}
+
+/*Color of border color*/
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: black;
+}
+
+.navbar-toggle:hover {
+    background: darkgrey !important;
+    color: black !important;
+}
+
+/*Color of */
+.navbar-toggle:focus {
+    background: darkgrey !important;
+    color: black !important;
+}
+
+.navbar-toggle:hover .icon-bar {
+    background: whitesmoke !important;
+}
+
+.navbar-toggle:focus .icon-bar {
+    background: whitesmoke !important;
+}
+
+.navbar-toggle .icon-bar {
+    background: darkgrey !important;
+}
+
+#Personatges img{
+    opacity: 0.1;
+}
+
+.search {
+    width: 100%;
+    position: relative
+}
+
+.searchTerm {
+    float: left;
+    width: 100%;
+    border: 3px solid #00B4CC;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus{
+    color: #00B4CC;
+}
+
+.searchButton {
+    position: absolute;
+    right: -50px;
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.char-info {
+    word-break: break-word;
+    white-space: normal;
+}
+
+#characters-panel a {
+    cursor: pointer;
+}
+
+#main-screenshot {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+/* Filters */
+#filter-sepia { filter:sepia(100%); }
+#filter-blur { filter:blur(2px); }
+#filter-grayscale { filter:grayscale(100%); }
+#filter-invert { filter:invert(100%); }
+#filter-contrast { filter:contrast(50%); }
+#filter-brightness { filter:brightness(50%); }
+#filter-opacity { filter:opacity(50%); }
+#filter-saturate { filter:saturate(50%); }
+
+#filter-intense {
+    height: 200px;
+    float: right;
+    margin-right: 4%;
+    visibility: hidden;
+}
+
+#custom-handle-filter {
+    width: 2em;
+    left: -.6em;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+}
+
+#filter-screenshot-intense {
+    display: inline-block;
+}
+
+#finish-filtering-div {
+    text-align: right;
+}
+
+#finish-filtering {
+    margin: 10px 10px 10px 0;
+    font-size: 13px;
+}
+
+input[type=range] {
+    max-width: 100px;
+    display: inline;
+    margin-left: 5px;
+}
+
+#save-screenshot {
+    top: 25vh;
+}
+
+#share-in a i {
+    margin-right: 7px;
+}
+
+#feedback-shared {
+    margin-top: 30px;
+}
+
+.dropdown-menu {
+    padding: 10px;
+    width: 250px !important;
+    cursor: default;
+}
+
+#commands-help .dropdown-menu li p {
+    font-size: 11px;
+}
+
+#current-filter-tag {
+    margin: -10px 0 5px 10px;
+}
+
+#well #mainVid::cue {
+    /*transform: translateY(0);*/
+    margin-bottom: 0;
+    transition: all .2s ease-in-out;
+}
+
+.modal-body h6 {
+    line-height: 20px;
+}
+
+#scene-description {
+    font-size: 10px;
+}
+
+#video-controls.full-screen {
+    position: absolute;
+    bottom: 0;
+    z-index: 99999999999999999;
+}
+
+/* The Modal (background) */
+.modal {
+
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 8% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px; /* Could be more or less, depending on screen size */
+    align-content: center;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.heading {
+    font-size: 25px;
+    margin-right: 25px;
+}
+
+.fa {
+    font-size: 25px;
+}
+
+.checked {
+    color: green;
+}
+
+/* Three column layout */
+.side {
+    float: left;
+    width: 15%;
+    margin-top:10px;
+}
+
+.middle {
+    margin-top:10px;
+    float: left;
+    width: 70%;
+}
+
+/* Place text to the right */
+.right {
+    text-align: right;
+}
+
+
+/* The bar container */
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+}
+
+/* Individual bars */
+.bar-5 {width: 10%; height: 18px; background-color: #4CAF50;}
+.bar-4 {width: 10%; height: 18px; background-color: #2196F3;}
+.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
+.bar-2 {width: 10%; height: 18px; background-color: #ff9800;}
+.bar-1 {width: 10%; height: 18px; background-color: #f44336;}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+    .side, .middle {
+        width: 100%;
+    }
+    .right {
+        display: none;
+    }
+}
+
+/* Botons dels personatges */
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button5 {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.button5:hover {
+    background-color: #555555;
+    color: white;
+}

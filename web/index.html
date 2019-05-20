@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Visor GDIE P1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../fotos/peter_head.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="lib/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/visor.css">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- HLS compatibility -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body id="fons">
+<!--Barra de navegació-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Principal</a></li>
+                <li><a href="https://github.com/tboutaour/ProyectoGedie" target="_blank">Github de la práctica</a></li>
+                <li><a href="#peu" onclick="destaca()">Contacto</a></li>
+                <li style="margin-top: 5px">
+                    <button class="button button5" onClick="apagaLlum(this)">Apagar la luz</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <h3>Valora este gag!</h3>
+        <p class="text-justify" id="gagTitol"></p>
+        <br>
+        <img id="gagImage" src="" alt="Image" width="100%">
+        <div class="well">
+            <button onclick="quitarModalyGuardar(1)" class="button button5 fas fa-star checked"></button>
+            <button onclick="quitarModalyGuardar(2)" class="button button5 fas fa-star checked"></button>
+            <button onclick="quitarModalyGuardar(3)" class="button button5 fas fa-star checked"></button>
+            <button onclick="quitarModalyGuardar(4)" class="button button5 fas fa-star checked"></button>
+            <button onclick="quitarModalyGuardar(5)" class="button button5 fas fa-star checked"></button>
+        </div>
+    </div>
+</div>
+<!--Reproductor de vídeo-->
+<div class="container">
+    <div class="row">
+        <div id="video-container" class="col-md-6">
+            <video id="mainVid" poster="../fotos/preview-episodi.png">
+                <track label="English" kind="subtitles" srclang="en" src="../meta/subtitols/PDF_15x06_EN.vtt"><!--0-->
+                <track label="Português" kind="subtitles" srclang="pt" src="../meta/subtitols/PDF_15x06_PT.vtt"><!--1-->
+                <track label="Personajes" kind="metadata" srclang="es" src="../meta/PDF_15x06_EXTRA.vtt"><!--2-->
+                <track label="Gags" kind="metadata" srclang="es" src="../meta/PDF_15x06_EXTRA_gags.vtt"><!--3-->
+                <track label="Castellano" kind="subtitles" srclang="es" src="../meta/subtitols/PDF_15x06_ES.vtt">
+                <!--4-->
+                <track label="Chino" kind="subtitles" srclang="xi" src="../meta/subtitols/PDF_15x06_XI.vtt"><!--5-->
+            </video>
+            <script>
+                var video = document.getElementById('mainVid');
+                if (Hls.isSupported()) {
+                    console.log("src canviat a .m3u8 (HLS)");
+                    var hls = new Hls();
+                    hls.loadSource('https://alumnes-ltim.uib.es/gdie1907/pr3/video/ffmpeg/chooser.m3u8');
+                    hls.attachMedia(video);
+                } else if (video.canPlayType('application/dash+xml')) {
+                    console.log("src canviat a .mpd (DASH)");
+                    video.src = 'https://alumnes-ltim.uib.es/gdie1907/pr3/video/dash/PDF_15x06.mpd';
+                } else {
+                    console.log("Canvia de navegador, crack.");
+                }
+            </script>
+            <div id="video-controls">
+                <div id="video-progress">
+                    <div id="actual-progress"></div>
+                </div>
+                <div id="video-buttons">
+                    <div>
+                        <label for="control-volume-range"></label><input id="control-volume-range" type="range" min="0"
+                                                                         max="100" value="75">
+                    </div>
+                    <div class="btn btn-default" id="tempsactual">
+                        <span id="actual-time">00:00</span> / <span id="duration"></span>
+                    </div>
+                    <div>
+                        <a id="control-stop" class="btn btn-default"><i class="fa fa-stop"></i></a>
+                        <a id="control-play" class="btn btn-default"><i class="fa fa-play"></i></a>
+                        <a id="control-expand" class="btn btn-default"><i class="fas fa-expand"></i></a>
+                    </div>
+                    <div>
+                        <a id="control-en" class="btn btn-default set-subtitle" lang="en">
+                            <img src="./../fotos/flags/uk32.png" alt="English">
+                        </a>
+                        <a id="control-pt" class="btn btn-default set-subtitle" lang="pt">
+                            <img src="./../fotos/flags/portugal32.png" alt="Português">
+                        </a>
+                        <a id="control-xi" class="btn btn-default set-subtitle" lang="xi">
+                            <img src="./../fotos/flags/china32.png" alt="Xinès">
+                        </a>
+                        <a id="control-es" class="btn btn-default set-subtitle" lang="es">
+                            <img src="./../fotos/flags/spain32.png" alt="Castellà">
+                        </a>
+                        <a id="control-no-sub" class="btn btn-default active-lan" lang="no-sub">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="col-sm-4" onclick="click_personatge('Brian_Griffin')">
+                <img id="Brian_Griffin" src="./../fotos/Brian_Griffin.png" height="100" width="80" alt="Image">
+                <button class="button button5" type="submit" name="learn" value="myimage">Brian Griffin</button>
+            </div>
+            <div class="col-sm-4" onclick="click_personatge('Chris_Griffin')">
+                <img id="Chris_Griffin" src="./../fotos/Chris_Griffin.png" height="100" width="80" alt="Image">
+                <button class="button button5" type="submit" name="learn" value="myimage">Chris Griffin</button>
+            </div>
+            <div class="col-sm-4" onclick="click_personatge('Lois_Griffin')">
+                <img id="Lois_Griffin" src="./../fotos/Lois_Griffin.png" height="100" width="80" alt="Image">
+                <button class="button button5" type="submit" name="learn" value="myimage">Lois Griffin</button>
+            </div>
+            <div class="col-sm-4" onclick="click_personatge('Meg_Griffin')">
+                <img id="Meg_Griffin" src="./../fotos/Meg_Griffin.png" height="100" width="80" alt="Image">
+                <button class="button button5" type="submit" name="learn" value="myimage">Meg Griffin</button>
+            </div>
+            <div class="col-sm-4" onclick="click_personatge('Peter_Griffin')">
+                <img id="Peter_Griffin" src="./../fotos/Peter_Griffin.png" height="100" width="80" alt="Image">
+                <button class="button button5" type="submit" name="learn" value="myimage">Peter Griffin</button>
+            </div>
+            <div class="col-sm-4" onclick="click_personatge('Stewie_Griffin')">
+                <img id="Stewie_Griffin" src="./../fotos/Stewie_Griffin.png" height="100" width="80" alt="Image">
+                <button class="button button5" type="submit" name="learn" value="myimage">Stewie Griffin</button>
+            </div>
+            <div class="col-sm-4" onclick="click_personatge('Cleveland_Brown')">
+                <img id="Cleveland_Brown" src="./../fotos/Cleveland_Brown.png" height="100" width="80" alt="Image">
+                <button class="button button5" type="submit" name="learn" value="myimage">Cleveland Brown</button>
+            </div>
+            <div class="col-sm-4" onclick="click_personatge('Glenn_Quagmire')">
+                <img id="Glenn_Quagmire" src="./../fotos/Glenn_Quagmire.png" height="100" width="80" alt="Image">
+                <button class="button button5" type="submit" name="learn" value="myimage">Glenn Quagmire</button>
+            </div>
+            <div class="col-sm-4" onclick="click_personatge('Joe_Swanson')">
+                <img id="Joe_Swanson" src="./../fotos/Joe_Swanson.png" height="100" width="80" alt="Image">
+                <button class="button button5" type="submit" name="learn" value="myimage">Joe Swanson</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<div class="container text-center">
+    <div class="well" id="idwell">
+        <div class="row" id="idrow">
+            <!--Imatges dels personatges-->
+            <div class="col-sm-6" id="Info">
+                <!--Título del capítulo-->
+                <div class="well">
+                    <h2>"Hot Shots" / "Espabilados"</h2>
+                </div>
+                <!--Información de interes de la escena-->
+                <div class="well">
+                    <p class="text-justify">
+                        Temporada: <b>15</b> <br>
+                        Episodio: <b>6</b> <br>
+                        Dirigido por <b>John Holmquist</b> <br>
+                        Escrito por <b>David A. Goodman</b> <br>
+                        Código de producción: <b>EACX03</b> <br>
+                        Emisión (E.E.U.U): <b>13 de noviembre, 2016</b> <br>
+                        Emisión (España): <b>10 de julio, 2017</b> <br>
+                        Emisión (Internacional): <b>30 de mayo, 2017</b> <br>
+                        <a href="https://en.wikipedia.org/wiki/Hot_Shots_(Family_Guy)" target="_blank">Más info</a>
+                    </p>
+                </div>
+                <!--Valoración-->
+                <div class="well">
+                    <h4 class="heading">Votaciones del usuario</h4>
+                    <span id="estrella0" class="fas fa-star checked"></span>
+                    <span id="estrella1" class="fas fa-star checked"></span>
+                    <span id="estrella2" class="fas fa-star checked"></span>
+                    <span id="estrella3" class="fas fa-star checked"></span>
+                    <span id="estrella4" class="fas fa-star"></span>
+
+                    <!--Valoración 2-->
+                    <div class="row">
+                        <div class="side">
+                            <div>5 star</div>
+                        </div>
+                        <div class="middle">
+                            <div class="bar-container">
+                                <div id="bar5" class="bar-5"></div>
+                            </div>
+                        </div>
+                        <div class="side right">
+                            <div id="barra5val">0</div>
+                        </div>
+                        <div class="side">
+                            <div>4 star</div>
+                        </div>
+                        <div class="middle">
+                            <div class="bar-container">
+                                <div id="bar4" class="bar-4"></div>
+                            </div>
+                        </div>
+                        <div class="side right">
+                            <div id="barra4val">0</div>
+                        </div>
+                        <div class="side">
+                            <div>3 star</div>
+                        </div>
+                        <div class="middle">
+                            <div class="bar-container">
+                                <div id="bar3" class="bar-3"></div>
+                            </div>
+                        </div>
+                        <div class="side right">
+                            <div id="barra3val">0</div>
+                        </div>
+                        <div class="side">
+                            <div>2 star</div>
+                        </div>
+                        <div class="middle">
+                            <div class="bar-container">
+                                <div id="bar2" class="bar-2"></div>
+                            </div>
+                        </div>
+                        <div class="side right">
+                            <div id="barra2val">0</div>
+                        </div>
+                        <div class="side">
+                            <div>1 star</div>
+                        </div>
+                        <div class="middle">
+                            <div class="bar-container">
+                                <div id="bar1" class="bar-1"></div>
+                            </div>
+                        </div>
+                        <div class="side right">
+                            <div id="barra1val">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Filtro de búsqueda-->
+                <div class="well">
+                    <h3>Búsqueda por Tag</h3>
+                    <br>
+                    <input id="tag-filters" type="text" placeholder="Search..">
+                    <button id="tag-filter">Filtra</button>
+                </div>
+                <div class="well">
+                    <h3>Canción original de la serie</h3>
+                    <audio controls="controls">
+                        <source src="../audio/theme_song.ogg" type="audio/ogg"/>
+                        <source src="../audio/theme_song.mp3" type="audio/mpeg"/>
+                        Backup message shown if the browser does not support the audio tag.
+                    </audio>
+                </div>
+                <div class="well">
+                    <h3>Canción a capela de la serie</h3>
+                    <audio controls="controls">
+                        <source src="../audio/theme_song_live.ogg" type="audio/ogg"/>
+                        <source src="../audio/theme_song_live.mp3" type="audio/mpeg"/>
+                        Backup message shown if the browser does not support the audio tag.
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+</div>
+
+<div class="container text-center">
+    <div class="well" id="peu">
+        <div class="row">
+            <!--Peu de la pàgina-->
+            <h3>Práctica realizada por:</h3>
+            <br>
+            <h5>A. Antonio Boutaour Sanchez</h5>
+            <a class="github-button" href="https://github.com/tboutaour" data-size="large"
+               aria-label="Follow @tboutaour on GitHub">Follow @tboutaour</a>
+            <h5>Bernat Pericàs Serra</h5>
+            <a class="github-button" href="https://github.com/berenar" data-size="large"
+               aria-label="Follow @berenar on GitHub">Follow @berenar</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- End Document
+    	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="js/jquery.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/jquery-ui/jquery-ui.min.js"></script>
+<script src="js/visor-functions.js"></script>
+<script src="js/functions.js"></script>
+</body>
+<script src="./MainJavaScript.js"></script>
+<script src="./tracks.js"></script>
+</html>

@@ -1,0 +1,35 @@
+Coses a implementar:
+• Apple HTTP Live Streaming HLS: https://developer.apple.com/streaming/
+• MPEG-DASH: https://dashif.org/
+-------------------------------------------------------------------------------
+ssh root@alumnes-ltim.uib.es -p 10077
+fe84
+cd /var/www/html/pr3/video
+
+Reescalar videos:
+ffmpeg -i "PDF_15x06.mp4" -s 1280x720 -vcodec libx264 -profile:v baseline -x264opts bitrate=2000:keyint=30 -acodec aac -ab 128k -strict -2 ffmpeg/high.mp4
+ffmpeg -i "PDF_15x06.mp4" -s 360x200 -vcodec libx264 -profile:v baseline -x264opts bitrate=1000:keyint=30 -acodec aac -ab 128k -strict -2 ffmpeg/medium.mp4
+ffmpeg -i "PDF_15x06.mp4" -s 180x100 -vcodec libx264 -profile:v baseline -x264opts bitrate=500:keyint=30 -acodec aac -ab 128k -strict -2 ffmpeg/low.mp4
+
+
+HLS
+per fer els m3u8:
+ffmpeg -i low.mp4 -c:a aac -strict -2 -ar 48000 -ab 64k -c:v libx264 -b:v 512k -flags -global_header -map 0 -f segment -segment_time 60 -segment_list low.m3u8 -segment_format mpegts strlow_%03d.ts
+ffmpeg -i medium.mp4 -c:a aac -strict -2 -ar 48000 -ab 64k -c:v libx264 -b:v 512k -flags -global_header -map 0 -f segment -segment_time 60 -segment_list mid.m3u8 -segment_format mpegts strmid_%03d.ts
+ffmpeg -i high.mp4 -c:a aac -strict -2 -ar 48000 -ab 64k -c:v libx264 -b:v 512k -flags -global_header -map 0 -f segment -segment_time 60 -segment_list high.m3u8 -segment_format mpegts strhigh_%03d.ts
+
+MPEG-DASH
+
+
+ffmpeg -i "PDF_15x06.mp4" -s 320x240 -vcodec libx264 -profile:v baseline -x264opts bitrate=800:keyint=30 -acodec libmp3lame -ab 128k low.mp4
+
+ffmpeg -i "PDF_15x06.mp4" -s 960x480 -vcodec libx264 -profile:v baseline -x264opts bitrate=1200:keyint=30 -acodec libmp3lame -ab 128k medium.mp4
+
+ffmpeg -i "PDF_15x06.mp4" -s 1920x1080 -vcodec libx264 -profile:v baseline -x264opts bitrate=2000:keyint=30 -acodec libmp3lame -ab 128k high.mp4
+
+MP4Box -dash 10000 -rap -frag-rap -profile live -out PDF_15x06-dash.mp4 low.mp4 medium.mp4 high.mp4
+
+
+
+
+
