@@ -19,6 +19,8 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- HLS compatibility -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
 </head>
 <body id="fons">
 <!--Barra de navegació-->
@@ -31,6 +33,10 @@
                 <li><a href="#peu" onclick="destaca()">Contacto</a></li>
                 <li style="margin-top: 5px">
                     <button class="button button5" onClick="apagaLlum(this)">Apagar la luz</button>
+                </li>
+                <li style="margin-top: 5px">
+                    <button class="button button5"><i class="fa fa-microphone"></i></button>
+                    <audio class="sound" src="../audio/chime.mp3"></audio>
                 </li>
             </ul>
         </div>
@@ -299,7 +305,6 @@
     </div>
 </div>
 
-
 <!-- End Document
     	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script src="js/jquery.min.js"></script>
@@ -310,4 +315,5 @@
 </body>
 <script src="./MainJavaScript.js"></script>
 <script src="./tracks.js"></script>
+<script src="voice/bernat.js" ></script>
 </html>
