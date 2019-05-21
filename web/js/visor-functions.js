@@ -74,13 +74,14 @@ function playpause() {
         myVideo.pause();
     }
 }
+
 function stopVid() {
     $('#control-play').find('i').removeClass('fa-pause').addClass('fa-play');
     myVideo.pause();
     myVideo.currentTime = 0;
 }
 
-function expandVid(){
+function expandVid() {
     if (myVideo.requestFullscreen) {
         myVideo.requestFullscreen();
     } else if (myVideo.mozRequestFullScreen) { /* Firefox */
@@ -90,4 +91,8 @@ function expandVid(){
     } else if (myVideo.msRequestFullscreen) { /* IE/Edge */
         myVideo.msRequestFullscreen();
     }
+}
+
+function volumeVid(num) {
+    myVideo.volume = myVideo.volume + num;
 }

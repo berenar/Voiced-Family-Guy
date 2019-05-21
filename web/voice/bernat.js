@@ -15,13 +15,13 @@ const vCH = ['chinese', 'chino', 'xines'];
 const vESP = ['español', 'spanish', 'espanyol', 'castella', 'castellano'];
 const vNoSub = ['desactivar subtitulos', 'sin subtitulos', 'no subtitulos', 'quitar subtitulos', 'llevar subtitols',
     'desactivar subtitols', 'fora subtitols', 'disable subtitles', 'no subtitles'];
-const vExpand = ['expand', 'full screen', 'fullscreen', 'bigger video', 'pantalla completa', 'pantalla grande',
-    'aumentar', 'expandir', 'augmentar']
+const vExpand = ['expand', 'full screen', 'fullscreen', 'sunscreen', 'bigger video', 'pantalla completa', 'pantalla grande',
+    'aumentar', 'expandir', 'augmentar'];
 const vTheme = ['Turn off the lights', 'lights off', 'black theme', 'dark theme', 'me duelen los ojos', 'apaga la luz',
-    'apagar la luz', 'apaga las luces', 'tema oscuro', 'fondo negro', 'atura el llum', 'aturar el llum', 'tema obscur']
+    'apagar la luz', 'apaga las luces', 'tema oscuro', 'fondo negro', 'atura el llum', 'aturar el llum', 'tema obscur'];
+const vVolumeUp = ['louder', 'more volume', 'subir volumen', 'mas volumen', 'mes fort', 'pujar volum', 'pujar volumen'];
 
-const vAll = [vPlay, vPause, vStop, vENG, vPT, vCH, vESP, vNoSub, vExpand, vTheme];
-
+const vAll = [vPlay, vPause, vStop, vENG, vPT, vCH, vESP, vNoSub, vExpand, vTheme, vVolumeUp];
 
 /*Listener of the mic icon that triggers the sound and the text recognition function*/
 icon.addEventListener('click', () => {
@@ -66,17 +66,29 @@ const dictate = () => {
                     stopVid();
                     break;
                 case 3:
-
+                    setSubtitles(0);
                     break;
                 case 4:
+                    setSubtitles(1);
                     break;
                 case 5:
+                    setSubtitles(2);
                     break;
                 case 6:
+                    setSubtitles(3);
                     break;
                 case 7:
+                    removeSubtitles();
                     break;
                 case 8:
+                    expandVid();
+                    break;
+                case 9:
+                    apagaLlum(document.getElementById('idLlum'));
+                    break;
+                case 10:
+                    //TODO: no funciona
+                    volumeVid(0.1);
                     break;
                 default:
                     //TODO: sintesi de veu: "no the entes"

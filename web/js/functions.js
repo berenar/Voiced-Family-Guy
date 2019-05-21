@@ -3,9 +3,10 @@ $(function () {
     init_video_controls();
     init_subtitles();
 });
+const languages = {'en': 0, 'pt': 1, 'es': 4, 'xi': 5};
 
 function init_subtitles() {
-    const languages = {'en': 0, 'pt': 1, 'es' : 4, 'xi' : 5};
+
 
     $('.set-subtitle').click(function () {
         // amagar tots els tracks
@@ -17,9 +18,16 @@ function init_subtitles() {
     });
 
     $('#control-no-sub').click(function () {
-        //amagar tots els subtitols
-        console.log("amagar tots els subtitols");
-        for (let i = 0; i < myVideo.textTracks.length; i++) myVideo.textTracks[i].mode = 'hidden';
+        removeSubtitles();
     });
 }
 
+function setSubtitles(idioma) {
+    myVideo.textTracks[languages[idioma]].mode = 'showing';
+    //$(this).attr('data-state', 'active')
+}
+
+function removeSubtitles(){
+    //amagar tots els subtitols
+    for (let i = 0; i < myVideo.textTracks.length; i++) myVideo.textTracks[i].mode = 'hidden';
+}
