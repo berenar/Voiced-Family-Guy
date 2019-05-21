@@ -6,13 +6,21 @@ const icon = document.querySelector('i.fa.fa-microphone');
 const sound = document.querySelector('.sound');
 //const myVideo = document.getElementById('mainVid');
 
-const all_play = ['play', 'reproducir', 'reproduce', 'reprodueix'];
-const all_pause = ['pause', 'pausar', 'pausa'];
-const all_stop = ['stop', 'detener', 'deten', 'detenir'];
-const all_ENG = ['english', 'ingles', 'angles'];
-const all_PT = ['portuguese', 'portugal', 'portugues'];
-const all_CH = ['chinese', 'chino', 'xines'];
-const all_ESP = ['español', 'spanish', 'espanyol', 'castella', 'castellano'];
+const vPlay = ['play', 'reproducir', 'reproduce', 'reprodueix'];
+const vPause = ['pause', 'pausar', 'pausa'];
+const vStop = ['stop', 'detener', 'deten', 'parar', 'parate', 'detenir', 'detendre'];
+const vENG = ['english', 'ingles', 'angles'];
+const vPT = ['portuguese', 'portugal', 'portugues'];
+const vCH = ['chinese', 'chino', 'xines'];
+const vESP = ['español', 'spanish', 'espanyol', 'castella', 'castellano'];
+const vNoSub = ['desactivar subtitulos', 'sin subtitulos', 'no subtitulos', 'quitar subtitulos', 'llevar subtitols',
+    'desactivar subtitols', 'fora subtitols', 'disable subtitles', 'no subtitles'];
+const vExpand = ['expand', 'full screen', 'fullscreen', 'bigger video', 'pantalla completa', 'pantalla grande',
+    'aumentar', 'expandir', 'augmentar']
+const vTheme = ['Turn off the lights', 'lights off', 'black theme', 'dark theme', 'me duelen los ojos', 'apaga la luz',
+    'apagar la luz', 'apaga las luces', 'tema oscuro', 'fondo negro', 'atura el llum', 'aturar el llum', 'tema obscur']
+
+const vAll = [vPlay, vPause, vStop, vENG, vPT, vCH, vESP, vNoSub, vExpand, vTheme];
 
 
 /*Listener of the mic icon that triggers the sound and the text recognition function*/
@@ -26,15 +34,16 @@ function normalitza(rec) {
     return rec.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
-/* Searches if the recognized text is included in a given array of Strings */
+/* Searches if the recognized text is included in a given array of arrays */
 function conte(all_play) {
-    for (let i = 0; i < all_play.size(); i++) {
-        if (normalitza(rec).includes(all_play[i])) {
-            return true;
+    for (let i = 0; i < vAll.length; i++) {
+        for (let j = 0; j < vAll[i].length; j++) {
+            if (normalitza(rec).includes(all_play[i][j])) {
+                return i;
+            }
         }
     }
-    return false;
-}
+};
 
 /* Checks if the recognized text coincides with any of the declared arrays and, if so, executes the matching actions */
 const dictate = () => {
@@ -44,15 +53,36 @@ const dictate = () => {
         console.log(rec);
 
         if (event.results[0].isFinal) {
+            var entes = conte(vAll);
+            console.log(entes);
+            switch (entes) {
+                case 0:
+                    playpause();
+                    break;
+                case 1:
+                    playpause();
+                    break;
+                case 2:
+                    stopVid();
+                    break;
+                case 3:
 
-            if (conte(all_play)) {
-                myVideo.play();
-            } else if (conte(all_pause)) {
-                myVideo.pause();
-            } else if (conte(all_stop)) {
-                myVideo.stop();
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                default:
+                    //TODO: sintesi de veu: "no the entes"
+                    console.log("Que putes dius amic?")
             }
         }
     }
-}
+};
 

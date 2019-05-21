@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2138fcad-ef7d-498d-90a4-8b960c327f9d" name="gdielinux" url="https://alumnes-ltim.uib.es/gdie1907/">
+        <fileTransfer host="alumnes-ltim.uib.es" port="10077" rootFolder="/var/www/html" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="10077" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

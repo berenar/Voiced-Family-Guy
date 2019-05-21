@@ -22,3 +22,4 @@ function init_subtitles() {
         for (let i = 0; i < myVideo.textTracks.length; i++) myVideo.textTracks[i].mode = 'hidden';
     });
 }
+
