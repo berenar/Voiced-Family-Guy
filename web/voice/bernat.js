@@ -16,7 +16,7 @@ const vESP = ['español', 'spanish', 'espanyol', 'castella', 'castellano'];
 const vNoSub = ['desactivar subtitulos', 'sin subtitulos', 'no subtitulos', 'quitar subtitulos', 'llevar subtitols',
     'desactivar subtitols', 'fora subtitols', 'disable subtitles', 'no subtitles'];
 const vExpand = ['expand', 'full screen', 'fullscreen', 'sunscreen', 'bigger video', 'pantalla completa', 'pantalla grande',
-    'aumentar', 'expandir', 'augmentar'];
+    'aumentar', 'expandir', 'augmentar','agrandar'];
 const vTheme = ['Turn off the lights', 'lights off', 'black theme', 'dark theme', 'me duelen los ojos', 'apaga la luz',
     'apagar la luz', 'apaga las luces', 'tema oscuro', 'fondo negro', 'atura el llum', 'aturar el llum', 'tema obscur'];
 const vVolumeUp = ['louder', 'more volume', 'subir volumen', 'mas volumen', 'mes fort', 'pujar volum', 'pujar volumen'];
@@ -28,6 +28,16 @@ icon.addEventListener('click', () => {
     sound.play();
     dictate();
 });
+
+$(window).keypress(function (e) {
+    if (e.key === ' ' || e.key === 'Spacebar') {
+        // ' ' is standard, 'Spacebar' was used by IE9 and Firefox < 37
+        e.preventDefault();
+        console.log('Space pressed');
+        sound.play();
+        dictate();
+    }
+})
 
 /* Remove accents and special characters and to lower case */
 function normalitza(rec) {
