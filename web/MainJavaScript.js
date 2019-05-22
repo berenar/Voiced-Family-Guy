@@ -20,13 +20,11 @@ function click_personatge(personatge) {
     min = 0;
     max= scene_track.cues.length-1;
     rnd = Math.round(Math.random() * (max - min) + min);
-    console.log(rnd.toString());
     var info = JSON.parse(scene_track.cues[rnd].text);
 
     if (info.characters.includes(personatge)){
         myVideo.play();
         myVideo.currentTime=scene_track.cues[rnd].startTime.toString();
-        console.log(myVideo.currentTime);
         //ja que el video s'iniciiara, canviar el boto principal de Pause a Play
         $('#control-play').find('i').removeClass('fa-play').addClass('fa-pause');
     }else{
