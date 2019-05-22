@@ -56,10 +56,11 @@ const array_of_functions = [
         setSubtitles(1)
     },
     function f_5() {
-        setSubtitles(2)
+        setSubtitles(5)
     },
     function f_6() {
-        setSubtitles(3)
+        console.log("intentant posar subs en esp");
+        setSubtitles(4)
     },
     function f_7() {
         removeSubtitles()
@@ -150,7 +151,8 @@ const dictate = () => {
                 array_of_functions[index_func_conte(vAll)]();
             } catch (e) {
                 //Word not recognized
-                console.log("Què putes dius amic")
+                console.log("Què putes dius amic");
+                console.log(e.stack);
             }
         }
     }
