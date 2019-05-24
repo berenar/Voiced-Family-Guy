@@ -1,3 +1,5 @@
+//TODO: https://stackoverflow.com/questions/22932636/speech-to-text-with-javascript-in-chrome-doesnt-recognize-anything
+
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const recognition = new SpeechRecognition();
 let rec;
@@ -61,6 +63,7 @@ const array_of_functions = [
     function f_18() { click_personatge('Glenn_Quagmire')},
     function f_19() { click_personatge('Joe_Swanson')}
 ];
+
 // @formatter:on
 
 /* Actions to execute to listen to the user */
