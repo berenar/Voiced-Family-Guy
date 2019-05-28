@@ -19,6 +19,10 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- HLS compatibility -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!--Chat-->
+    <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="css/chat_style.css">
+
 
 </head>
 <body id="fons">
@@ -165,10 +169,6 @@
     <hr>
 </div>
 
-<div>
-
-</div>
-
 <div class="container text-center">
     <div class="well" id="idwell">
         <div class="row" id="idrow">
@@ -262,6 +262,18 @@
                 </div>
             </div>
             <div class="col-sm-6">
+                <div class="well">
+                    <div class="members-count">-</div>
+                   <p>Tú eres:</p>
+                    <div class="members-list">-</div>
+                    <div class="messages"
+                         style="height:300px;width:500px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;"></div>
+                    <form class="message-form" onsubmit="return false;">
+                        <input class="message-form__input" placeholder="Type a message.." type="text"/>
+                        <input class="message-form__button" value="Send" type="submit"/>
+                    </form>
+                    <script src="js/chat_functions.js"></script>
+                </div>
                 <!--Filtro de búsqueda-->
                 <div class="well">
                     <h3>Búsqueda por Tag</h3>
@@ -318,5 +330,5 @@
 </body>
 <script src="./MainJavaScript.js"></script>
 <script src="./tracks.js"></script>
-<script src="voice/bernat.js" ></script>
+<script src="voice/bernat.js"></script>
 </html>

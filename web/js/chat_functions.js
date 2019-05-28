@@ -66,7 +66,7 @@ function getRandomName() {
         "Angelote","Anguila","Antílope","Araña","Arenque","Armadillo","Armiño","Asno","Atún","Avefría","Avestruz",
         "Avetoro","Avispa Babirusa","Babosa","Babuino","Bacalao","Ballena","Banteng","Barasinga","Barracuda","Becada",
         "Beira","Beluga","Bengalí","Bermejuela","Berrendo","Besugo","Bisbita","Bisonte","Blanquillo","Boa","Bogavante",
-        "Bongo","Bonito","Bonobo","Boto","Buey","Búfalo","Búho","Buitre","Burro	Caballo","Caballito de mar","Cacatúa",
+        "Bongo","Bonito","Bonobo","Boto","Buey","Búfalo","Búho","Buitre","Burro","Caballo","Caballito de mar","Cacatúa",
         "Cachalote","Calamón","Camaleón","Camello","Canguro","Canario","Cangrejo","Caracol","Castor","Cebra","Centollo",
         "Cerdo","Chacal","Chimpancé","Chinchilla","Ciempiés","Ciervo","Cigala","Cisne","Cobaya","Cochinilla","Cocodrilo"
         ,"Coendú","Coipú","Colibrí","Comadreja","Conejo","Coral","Coridora","Cormorán","Cóndor","Cotorra","Coyote",
