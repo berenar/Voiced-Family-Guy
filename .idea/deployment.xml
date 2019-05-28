@@ -5,7 +5,7 @@
       <paths name="gdielinux">
         <serverdata>
           <mappings>
-            <mapping deploy="/p4" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/pr4" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
