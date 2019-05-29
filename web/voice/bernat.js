@@ -7,6 +7,7 @@
 //TODO: https://www.sitepoint.com/webrtc-video-chat-application-simplewebrtc/
 //TODO: https://scotch.io/tutorials/build-a-video-chat-service-with-javascript-webrtc-and-okta
 
+// noinspection JSUnresolvedVariable
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const recognition = new SpeechRecognition();
 let rec;
@@ -145,13 +146,14 @@ icon.addEventListener('click', () => {
 });
 
 /* Trigger actionMic() whenever the space bar is pressed */
-$(window).keypress(function (e) {
-    if (e.key === ' ' || e.key === 'Spacebar') {
-        // ' ' is standard, 'Spacebar' was used by IE9 and Firefox < 37
-        e.preventDefault();
+document.onkeydown = keydown;
+
+function keydown(evt) {
+    if (evt.ctrlKey && evt.keyCode == 32) { //CTRL+SPACE
+        evt.preventDefault();
         actionMic();
     }
-});
+}
 
 /* Remove accents and special characters and to lower case */
 function normalitza(rec) {
