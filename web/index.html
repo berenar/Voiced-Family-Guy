@@ -181,7 +181,7 @@
                 </div>
                 <!--Información de interes de la escena-->
                 <div class="well">
-                    <p class="text-justify">
+                    <p class="text-justify" >
                         Temporada: <b>15</b> <br>
                         Episodio: <b>6</b> <br>
                         Dirigido por <b>John Holmquist</b> <br>
@@ -192,6 +192,12 @@
                         Emisión (Internacional): <b>30 de mayo, 2017</b> <br>
                         <a href="https://en.wikipedia.org/wiki/Hot_Shots_(Family_Guy)" target="_blank">Más info</a>
                     </p>
+                    <p hidden id="tospeak">
+                        Temporada 15, Episodio 6, Dirigido por John Holmquist, Escrito por David Goodman,
+                        Código de producción EACX03, Emisión Estados Unidos 13 de noviembre, 2016,
+                        Emisión España 10 de julio, 2017, Emisión Internacional 30 de mayo, 2017,
+                    </p>
+                    <button onclick="xerra()" id="speak">Léemelo</button>
                 </div>
                 <!--Valoración-->
                 <div class="well">
@@ -321,14 +327,13 @@
     </div>
 </div>
 
-<h1>Speech synthesiser</h1>
-
-<p>Enter some text in the input below and press return  or the "play" button to hear it. change voices using the dropdown menu.</p>
-
-<form>
+<form hidden>
     <input type="text" class="txt">
     <select></select>
 </form>
+
+
+
 
 <script src="js/speak.js"></script>
 

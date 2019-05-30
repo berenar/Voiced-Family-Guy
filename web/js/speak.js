@@ -1,9 +1,8 @@
 var synth = window.speechSynthesis;
-
+var buttonSpeak = document.getElementById('speak');
 var inputForm = document.querySelector('form');
 var inputTxt = document.querySelector('.txt');
 var voiceSelect = document.querySelector('select');
-
 
 var voices = [];
 
@@ -39,18 +38,20 @@ if (speechSynthesis.onvoiceschanged !== undefined) {
 function speak() {
     if (synth.speaking) {
         console.error('speechSynthesis.speaking');
-        console.log("Aún está hablando!")
+        console.log("Aún está hablando!");
         return;
     }
     if (inputTxt.value !== '') {
+        inputTxt.value = document.getElementById('tospeak').innerHTML;
         var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
-        utterThis.onend = function (event) {
-            console.log('SpeechSynthesisUtterance.onend');
-        }
-        utterThis.onerror = function (event) {
-            console.error('SpeechSynthesisUtterance.onerror');
-        }
+        utterThis.onend = function () {
+            console.log("He acabado de hablar");
+        };
+        utterThis.onerror = function () {
+            console.error("Error de habla");
+        };
         var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+        console.log(selectedOption);
         for (i = 0; i < voices.length; i++) {
             if (voices[i].name === selectedOption) {
                 utterThis.voice = voices[i];
@@ -60,7 +61,8 @@ function speak() {
     }
 }
 
-inputForm.onsubmit = function (event) {
+
+function xerra() {
     event.preventDefault();
 
     speak();
