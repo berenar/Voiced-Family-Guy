@@ -16,9 +16,7 @@ function init_video_controls() {
 
     // Stop Button
     $('#control-stop').click(function () {
-        $('#control-play').find('i').removeClass('fa-pause').addClass('fa-play');
-        myVideo.pause();
-        myVideo.currentTime = 0;
+        stopVid();
     });
 
     // On change on the volume input range
@@ -28,15 +26,7 @@ function init_video_controls() {
 
     // Full Screen Button
     $('#control-expand').click(function () {
-        if (myVideo.requestFullscreen) {
-            myVideo.requestFullscreen();
-        } else if (myVideo.mozRequestFullScreen) { /* Firefox */
-            myVideo.mozRequestFullScreen();
-        } else if (myVideo.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-            myVideo.webkitRequestFullscreen();
-        } else if (myVideo.msRequestFullscreen) { /* IE/Edge */
-            myVideo.msRequestFullscreen();
-        }
+        expandVid();
     });
     // Every time that changes the current time of the video
     $('#mainVid').bind('timeupdate', function () {
@@ -83,4 +73,26 @@ function playpause() {
         $('#control-play').find('i').removeClass('fa-pause').addClass('fa-play');
         myVideo.pause();
     }
+}
+
+function stopVid() {
+    $('#control-play').find('i').removeClass('fa-pause').addClass('fa-play');
+    myVideo.pause();
+    myVideo.currentTime = 0;
+}
+
+function expandVid() {
+    if (myVideo.requestFullscreen) {
+        myVideo.requestFullscreen();
+    } else if (myVideo.mozRequestFullScreen) { /* Firefox */
+        myVideo.mozRequestFullScreen();
+    } else if (myVideo.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        myVideo.webkitRequestFullscreen();
+    } else if (myVideo.msRequestFullscreen) { /* IE/Edge */
+        myVideo.msRequestFullscreen();
+    }
+}
+
+function volumeVid(num) {
+    myVideo.volume = myVideo.volume + num;
 }
