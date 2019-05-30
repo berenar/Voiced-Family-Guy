@@ -22,7 +22,7 @@
     <!--Chat-->
     <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
     <link rel="stylesheet" type="text/css" href="css/chat.css">
-
+    <link rel="stylesheet" href="css/speak.css">
 
 </head>
 <body id="fons">
@@ -265,7 +265,7 @@
             <div class="col-sm-6">
                 <div class="well">
                     <div class="members-count">-</div>
-                   <p>Tú eres:</p>
+                    <p>Tú eres:</p>
                     <div class="members-list">-</div>
                     <div class="messages"
                          style="height:300px;width:500px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;"></div>
@@ -321,6 +321,17 @@
     </div>
 </div>
 
+<h1>Speech synthesiser</h1>
+
+<p>Enter some text in the input below and press return  or the "play" button to hear it. change voices using the dropdown menu.</p>
+
+<form>
+    <input type="text" class="txt">
+    <select></select>
+</form>
+
+<script src="js/speak.js"></script>
+
 <!-- End Document
     	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script src="lib/jquery.min.js"></script>
@@ -331,5 +342,5 @@
 </body>
 <script src="js/characters.js"></script>
 <script src="js/tracks.js"></script>
-<script src="js/voice.js" ></script>
+<script src="js/voice.js"></script>
 </html>

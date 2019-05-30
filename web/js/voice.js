@@ -1,12 +1,3 @@
-//TODO: https://stackoverflow.com/questions/22932636/speech-to-text-with-javascript-in-chrome-doesnt-recognize-anything
-//TODO: https://www.html5rocks.com/en/tutorials/webrtc/basics/
-//TODO: https://www.tutorialspoint.com/html5/html5_web_rtc.htm
-
-//Exemples:
-//TODO: https://www.scaledrone.com/blog/webrtc-tutorial-simple-video-chat/
-//TODO: https://www.sitepoint.com/webrtc-video-chat-application-simplewebrtc/
-//TODO: https://scotch.io/tutorials/build-a-video-chat-service-with-javascript-webrtc-and-okta
-
 // noinspection JSUnresolvedVariable
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const recognition = new SpeechRecognition();
